@@ -1,13 +1,23 @@
-# Sitemap / Pages
+# Sitemap / URL Hierarchy
 
-Required:
-- / (Home)
-- /about (About)
-- /services (Services)
-- /portfolio (Portfolio)
-- /reviews (Reviews)
-- /contacts (Contacts)
+## Required
+- `/`
+- `/about`
+- `/services`
+- `/portfolio`
+- `/reviews`
+- `/contacts`
 
-Optional (future-ready):
-- /blog (index)
-- /blog/{slug} (post)
+## Optional (future-ready)
+- `/blog`
+- `/blog/{slug}`
+
+## Hierarchy (tree)
+- `/`
+- `/about`
+- `/services`
+- `/portfolio`
+- `/reviews`
+- `/contacts`
+- `/blog` (optional)
+  - `/blog/{slug}` (optional)
