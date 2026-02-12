@@ -1,0 +1,9 @@
+# Local environment variables
+.env
+
+# WordPress runtime artifacts (local docker bind mount)
+wordpress/wp-content/uploads/
+wordpress/wp-content/cache/
+wordpress/wp-content/upgrade/
+wordpress/wp-content/ai1wm-backups/
+wordpress/wp-content/debug.log
