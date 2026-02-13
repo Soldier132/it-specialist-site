@@ -9,19 +9,19 @@ if (!defined('ABSPATH')) {
 	exit;
 }
 
-$phone    = get_theme_mod('it_specialist_contact_phone', '+1 (000) 000-0000');
-$email    = get_theme_mod('it_specialist_contact_email', 'contact@example.com');
-$telegram = get_theme_mod('it_specialist_telegram', 'https://t.me/yourusername');
-$whatsapp = get_theme_mod('it_specialist_whatsapp', 'https://wa.me/10000000000');
-$linkedin = get_theme_mod('it_specialist_linkedin', 'https://linkedin.com/in/yourprofile');
+$phone    = it_specialist_get_contact_value('it_specialist_phone', 'it_specialist_contact_phone', 'phone', '+1 (000) 000-0000');
+$email    = it_specialist_get_contact_value('it_specialist_email', 'it_specialist_contact_email', 'email', 'contact@example.com');
+$telegram = it_specialist_get_contact_value('it_specialist_telegram_url', 'it_specialist_telegram', 'telegram_url', 'https://t.me/yourusername');
+$whatsapp = it_specialist_get_contact_value('it_specialist_whatsapp_url', 'it_specialist_whatsapp', 'whatsapp_url', 'https://wa.me/10000000000');
+$linkedin = it_specialist_get_contact_value('it_specialist_linkedin', 'it_specialist_linkedin', 'linkedin_url', 'https://linkedin.com/in/yourprofile');
 ?>
 </main>
 <footer class="site-footer">
 	<div class="container">
 		<div class="footer-grid">
 			<section>
-				<h2>IT Specialist</h2>
-				<p>Infrastructure support, cloud operations, and business IT automation.</p>
+				<h2><?php bloginfo('name'); ?></h2>
+				<p><?php bloginfo('description'); ?></p>
 			</section>
 			<section>
 				<h2>Contacts</h2>

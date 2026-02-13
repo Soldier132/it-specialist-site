@@ -37,6 +37,28 @@ services:
     volumes:
       - wordpress_data:/var/www/html
       - ./wordpress/wp-content:/var/www/html/wp-content
+      - ./wordpress/docker/apache/allowoverride.conf:/etc/apache2/conf-enabled/allowoverride.conf:ro
+
+  wpcli:
+    image: wordpress:cli
+    depends_on:
+      db:
+        condition: service_healthy
+      wordpress:
+        condition: service_started
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_NAME: ${WORDPRESS_DB_NAME}
+      WORDPRESS_DB_USER: ${WORDPRESS_DB_USER}
+      WORDPRESS_DB_PASSWORD: ${WORDPRESS_DB_PASSWORD}
+      WORDPRESS_TABLE_PREFIX: ${WORDPRESS_TABLE_PREFIX}
+    volumes:
+      - wordpress_data:/var/www/html
+      - ./wordpress/wp-content:/var/www/html/wp-content
+      - ./docs:/var/www/html/docs
+    working_dir: /var/www/html
+    profiles:
+      - tools
 
   phpmyadmin:
     image: phpmyadmin:latest

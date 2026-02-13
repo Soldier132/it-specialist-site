@@ -10,12 +10,18 @@ if (!defined('ABSPATH')) {
 }
 
 get_header();
+
+$demo          = it_specialist_get_demo_content();
+$home_data     = isset($demo['homepage']) && is_array($demo['homepage']) ? $demo['homepage'] : array();
+$hero_h1       = isset($home_data['hero_h1']) ? $home_data['hero_h1'] : __('Reliable IT support for teams and businesses', 'it-specialist');
+$hero_subtitle = isset($home_data['hero_subtitle']) ? $home_data['hero_subtitle'] : __('From proactive maintenance to cloud migration and incident response, this website presents the complete service profile of your IT specialist.', 'it-specialist');
+$cards         = isset($home_data['services_cards']) && is_array($home_data['services_cards']) ? $home_data['services_cards'] : array();
 ?>
 <div class="container">
 	<section class="hero">
 		<span class="pill">IT Services</span>
-		<h1><?php esc_html_e('Reliable IT support for teams and businesses', 'it-specialist'); ?></h1>
-		<p><?php esc_html_e('From proactive maintenance to cloud migration and incident response, this website presents the complete service profile of your IT specialist.', 'it-specialist'); ?></p>
+		<h1><?php echo esc_html($hero_h1); ?></h1>
+		<p><?php echo esc_html($hero_subtitle); ?></p>
 		<div class="cta-row">
 			<a class="btn btn-primary" href="<?php echo esc_url(home_url('/services/')); ?>"><?php esc_html_e('View Services', 'it-specialist'); ?></a>
 			<a class="btn btn-outline" href="<?php echo esc_url(home_url('/contacts/')); ?>"><?php esc_html_e('Contact Now', 'it-specialist'); ?></a>
@@ -25,9 +31,12 @@ get_header();
 	<section class="section">
 		<h2><?php esc_html_e('Core expertise', 'it-specialist'); ?></h2>
 		<div class="grid">
-			<article class="card"><h3><?php esc_html_e('Infrastructure', 'it-specialist'); ?></h3><p><?php esc_html_e('Server setup, monitoring, and lifecycle support.', 'it-specialist'); ?></p></article>
-			<article class="card"><h3><?php esc_html_e('Cloud', 'it-specialist'); ?></h3><p><?php esc_html_e('Migration planning and managed cloud operations.', 'it-specialist'); ?></p></article>
-			<article class="card"><h3><?php esc_html_e('Security', 'it-specialist'); ?></h3><p><?php esc_html_e('Baseline hardening, backups, and access controls.', 'it-specialist'); ?></p></article>
+			<?php foreach ($cards as $card) : ?>
+				<article class="card">
+					<h3><?php echo esc_html(isset($card['title']) ? $card['title'] : ''); ?></h3>
+					<p><?php echo esc_html(isset($card['description']) ? $card['description'] : ''); ?></p>
+				</article>
+			<?php endforeach; ?>
 		</div>
 	</section>
 

@@ -10,17 +10,31 @@ if (!defined('ABSPATH')) {
 }
 
 get_header();
+
+$demo              = it_specialist_get_demo_content();
+$reviews_data      = isset($demo['reviews']) && is_array($demo['reviews']) ? $demo['reviews'] : array();
+$reviews_intro     = isset($reviews_data['intro']) ? $reviews_data['intro'] : __('Client feedback and outcomes from delivered IT projects.', 'it-specialist');
+$review_items      = isset($reviews_data['items']) && is_array($reviews_data['items']) ? $reviews_data['items'] : array();
+$reviews_link      = isset($reviews_data['profile_link_placeholder']) ? $reviews_data['profile_link_placeholder'] : '#';
 ?>
 <div class="container">
 	<section class="hero">
 		<h1><?php esc_html_e('Reviews', 'it-specialist'); ?></h1>
-		<p><?php esc_html_e('Client feedback and outcomes from delivered IT projects.', 'it-specialist'); ?></p>
+		<p><?php echo esc_html($reviews_intro); ?></p>
 	</section>
 
 	<section class="section grid">
-		<article class="card"><h2><?php esc_html_e('Operations Team', 'it-specialist'); ?></h2><p><?php esc_html_e('"Fast response and clear action plan. Downtime dropped in the first month."', 'it-specialist'); ?></p></article>
-		<article class="card"><h2><?php esc_html_e('Startup Founder', 'it-specialist'); ?></h2><p><?php esc_html_e('"The migration was smooth and our deployment process became predictable."', 'it-specialist'); ?></p></article>
-		<article class="card"><h2><?php esc_html_e('Retail Business', 'it-specialist'); ?></h2><p><?php esc_html_e('"Excellent support quality and strong communication."', 'it-specialist'); ?></p></article>
+		<?php foreach ($review_items as $review) : ?>
+			<article class="card">
+				<h2><?php echo esc_html(isset($review['author']) ? $review['author'] : ''); ?></h2>
+				<p><strong><?php esc_html_e('Rating:', 'it-specialist'); ?></strong> <?php echo esc_html(isset($review['rating']) ? (string) $review['rating'] : ''); ?>/5</p>
+				<p><?php echo esc_html(isset($review['text']) ? $review['text'] : ''); ?></p>
+			</article>
+		<?php endforeach; ?>
+	</section>
+
+	<section class="section">
+		<a class="btn btn-outline" href="<?php echo esc_url($reviews_link); ?>"><?php esc_html_e('Add Public Profile Link', 'it-specialist'); ?></a>
 	</section>
 
 	<section class="section card">

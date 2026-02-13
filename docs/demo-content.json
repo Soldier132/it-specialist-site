@@ -1,0 +1,202 @@
+{
+  "site": {
+    "title": "Alex Carter IT Specialist",
+    "tagline": "Practical IT support, automation, and cloud operations for small business teams."
+  },
+  "contacts": {
+    "phone": "+1 (646) 555-0142",
+    "email": "hello@alexcarter-it.com",
+    "telegram_url": "https://t.me/alexcarterit",
+    "whatsapp_url": "https://wa.me/16465550142",
+    "address": "350 5th Ave, New York, NY 10118, USA",
+    "city": "New York",
+    "linkedin_url": "https://www.linkedin.com/in/alexcarterit",
+    "forms_email": "hello@alexcarter-it.com"
+  },
+  "homepage": {
+    "hero_h1": "IT support that keeps your business online and predictable",
+    "hero_subtitle": "I help teams reduce incidents, speed up onboarding, and keep infrastructure healthy with measurable service routines.",
+    "services_cards": [
+      {
+        "title": "Managed IT Support",
+        "description": "Daily monitoring, ticket handling, patching, and end-user support with clear SLAs."
+      },
+      {
+        "title": "Cloud and DevOps",
+        "description": "Migration planning, CI/CD setup, and cloud cost optimization for stable releases."
+      },
+      {
+        "title": "Security and Backup",
+        "description": "Security baselines, backup policies, and recovery drills to reduce business risk."
+      }
+    ]
+  },
+  "about": {
+    "intro": "I am a systems-focused IT specialist with 8+ years of hands-on support for product teams, agencies, and local businesses.",
+    "sections": [
+      {
+        "title": "How I work",
+        "text": "I prioritize reliability first: stabilize, document, automate, then scale.",
+        "bullets": [
+          "Incident prevention through monitoring and runbooks",
+          "Clear communication with business-friendly status updates",
+          "Security-first defaults for access and backups"
+        ]
+      },
+      {
+        "title": "Typical outcomes",
+        "text": "Most clients see faster issue resolution and lower downtime within the first month.",
+        "bullets": [
+          "Fewer repeated support tickets",
+          "Faster onboarding for new employees",
+          "Predictable change windows and release quality"
+        ]
+      }
+    ]
+  },
+  "services": {
+    "intro": "Service packages are adapted to your team size, current stack, and growth stage.",
+    "pricing_policy": "Final pricing depends on scope, urgency, and current infrastructure maturity.",
+    "items": [
+      {
+        "name": "Managed IT Support",
+        "includes": [
+          "Monitoring and alert triage",
+          "Patch management and routine maintenance",
+          "User support for hardware/software issues"
+        ],
+        "result": "Stable day-to-day operations and fewer unplanned outages.",
+        "notes": "Best for teams needing a reliable technical partner."
+      },
+      {
+        "name": "Cloud Migration and Optimization",
+        "includes": [
+          "Current-state infrastructure assessment",
+          "Migration roadmap with rollback strategy",
+          "Post-migration performance and cost tuning"
+        ],
+        "result": "Safer cloud adoption with minimal business disruption.",
+        "notes": "Works for both first-time migrations and cleanup projects."
+      },
+      {
+        "name": "Security and Backup Program",
+        "includes": [
+          "Access policy hardening",
+          "Backup schedule design and validation",
+          "Recovery scenario testing"
+        ],
+        "result": "Reduced impact from incidents and stronger compliance posture.",
+        "notes": "Recommended for regulated or customer-facing environments."
+      }
+    ]
+  },
+  "reviews": {
+    "intro": "Recent client feedback after support, migration, and hardening projects.",
+    "items": [
+      {
+        "author": "Operations Lead, eCommerce Team",
+        "rating": 5,
+        "text": "Response times improved quickly. We now have predictable maintenance and fewer urgent outages."
+      },
+      {
+        "author": "Founder, SaaS Startup",
+        "rating": 5,
+        "text": "Cloud migration was organized and low-risk. Deployment became more stable within two weeks."
+      },
+      {
+        "author": "Office Manager, Healthcare Clinic",
+        "rating": 4,
+        "text": "Communication was clear and practical. Backup verification gave us real confidence."
+      }
+    ],
+    "profile_link_placeholder": "#"
+  },
+  "contacts_page": {
+    "intro": "Send a message with your current issue or project goal. I typically reply within one business day.",
+    "preferred_channels": [
+      "Email",
+      "WhatsApp",
+      "Telegram"
+    ],
+    "availability": "Mon-Fri, 9:00-18:00 (Eastern Time). Emergency support by prior agreement.",
+    "google_maps_embed": "https://www.google.com/maps?q=350+5th+Ave,+New+York,+NY+10118&output=embed"
+  },
+  "pages_meta": {
+    "home": {
+      "title": "IT Specialist in New York | Managed Support and Cloud Services",
+      "description": "Reliable IT specialist services: support, cloud migration, security, and automation for growing teams."
+    },
+    "about": {
+      "title": "About Alex Carter | IT Specialist",
+      "description": "Learn about experience, approach, and outcomes from practical IT operations and automation projects."
+    },
+    "services": {
+      "title": "IT Services | Support, Cloud, Security",
+      "description": "Explore managed IT support, cloud migration, and security/backup services tailored to business goals."
+    },
+    "portfolio": {
+      "title": "Portfolio | IT Projects and Case Results",
+      "description": "Review selected IT projects including migrations, support automation, and infrastructure hardening."
+    },
+    "reviews": {
+      "title": "Client Reviews | IT Specialist Feedback",
+      "description": "Read client feedback on reliability, response quality, and project outcomes."
+    },
+    "contacts": {
+      "title": "Contacts | Talk to an IT Specialist",
+      "description": "Contact by email, Telegram, or WhatsApp to discuss support tasks and project scope."
+    }
+  },
+  "pages": {
+    "home": {
+      "title": "Home",
+      "slug": "home",
+      "content": "<!-- wp:paragraph --><p>Welcome. This page is auto-generated from demo content and rendered by the front-page template.</p><!-- /wp:paragraph -->"
+    },
+    "about": {
+      "title": "About",
+      "slug": "about",
+      "content": "<!-- wp:paragraph --><p>About page content is managed through theme demo data and this page exists for URL and admin editing.</p><!-- /wp:paragraph -->"
+    },
+    "services": {
+      "title": "Services",
+      "slug": "services",
+      "content": "<!-- wp:paragraph --><p>Services are displayed with a dynamic template and request form.</p><!-- /wp:paragraph -->"
+    },
+    "portfolio": {
+      "title": "Portfolio",
+      "slug": "portfolio",
+      "content": "<!-- wp:paragraph --><p>Selected projects and outcomes are published on this page.</p><!-- /wp:paragraph -->"
+    },
+    "reviews": {
+      "title": "Reviews",
+      "slug": "reviews",
+      "content": "<!-- wp:paragraph --><p>Client reviews and rating snippets are shown by the page template.</p><!-- /wp:paragraph -->"
+    },
+    "contacts": {
+      "title": "Contacts",
+      "slug": "contacts",
+      "content": "<!-- wp:paragraph --><p>Use this page to contact the specialist through form, email, or messenger links.</p><!-- /wp:paragraph -->"
+    }
+  },
+  "blog_posts": [
+    {
+      "title": "How to Reduce Repeated IT Incidents in 30 Days",
+      "slug": "reduce-repeated-it-incidents",
+      "excerpt": "A practical runbook-first process to reduce recurring support tickets and downtime.",
+      "content": "<!-- wp:paragraph --><p>Start with incident categories and count repeats weekly. Then build one actionable runbook per top category.</p><!-- /wp:paragraph --><!-- wp:paragraph --><p>Track response time, resolution time, and repeat rate. After two weeks, enforce change windows and backup checks.</p><!-- /wp:paragraph -->"
+    },
+    {
+      "title": "Small Business Cloud Migration Checklist",
+      "slug": "small-business-cloud-migration-checklist",
+      "excerpt": "Key checks before, during, and after migration to avoid common outages.",
+      "content": "<!-- wp:paragraph --><p>Document dependencies, define rollback, and test backups before moving production workloads.</p><!-- /wp:paragraph --><!-- wp:paragraph --><p>After migration, validate monitoring, access policies, and spending alerts in the first 72 hours.</p><!-- /wp:paragraph -->"
+    },
+    {
+      "title": "Backup Validation: What Most Teams Miss",
+      "slug": "backup-validation-what-teams-miss",
+      "excerpt": "Backups are only useful if restore steps are tested and timed.",
+      "content": "<!-- wp:paragraph --><p>Pick critical systems and perform scheduled restore drills. Record exact restore time and blockers.</p><!-- /wp:paragraph --><!-- wp:paragraph --><p>Use findings to improve runbooks and set realistic recovery expectations with stakeholders.</p><!-- /wp:paragraph -->"
+    }
+  ]
+}
