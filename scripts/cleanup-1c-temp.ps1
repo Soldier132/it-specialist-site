@@ -2,6 +2,19 @@
 param()
 
 $ErrorActionPreference = 'Stop'
+$script:FailedItems = New-Object System.Collections.Generic.List[string]
+
+function Add-FailedItem {
+    param(
+        [Parameter(Mandatory = $true)]
+        [string]$Path,
+
+        [Parameter(Mandatory = $true)]
+        [string]$Reason
+    )
+
+    $script:FailedItems.Add("$Path :: $Reason") | Out-Null
+}
 
 function Get-SelectionFromMenu {
     param(
@@ -48,13 +61,36 @@ function Remove-UnwantedChildren {
 
     Write-Host "`n[$Label] Проверка: $Path"
 
-    if (-not (Test-Path -LiteralPath $Path)) {
-        Write-Warning "Путь не найден, пропускаю: $Path"
+    try {
+        if (-not (Test-Path -LiteralPath $Path)) {
+            Write-Warning "Путь не найден, пропускаю: $Path"
+            return
+        }
+    }
+    catch {
+        $reason = $_.Exception.Message
+        Write-Warning "Нет доступа к пути, пропускаю: $Path`
+Причина: $reason"
+        Add-FailedItem -Path $Path -Reason $reason
         return
     }
 
-    $children = Get-ChildItem -LiteralPath $Path -Force
-    $toRemove = $children | Where-Object { $_.Name -notin $AllowedNames }
+    try {
+        $children = Get-ChildItem -LiteralPath $Path -Force
+    }
+    catch {
+        $reason = $_.Exception.Message
+        Write-Warning "Не удалось прочитать содержимое, пропускаю: $Path`
+Причина: $reason"
+        Add-FailedItem -Path $Path -Reason $reason
+        return
+    }
+
+    $toRemove = $children | Where-Object {
+        $isAllowedByName = $_.Name -in $AllowedNames
+        $isPflFile = -not $_.PSIsContainer -and $_.Extension -ieq '.pfl'
+        -not ($isAllowedByName -or $isPflFile)
+    }
 
     if (-not $toRemove) {
         Write-Host "[$Label] Лишних объектов не найдено."
@@ -66,30 +102,59 @@ function Remove-UnwantedChildren {
         Write-Host (" - {0}" -f $_.FullName)
     }
 
+    $removedCount = 0
     foreach ($item in $toRemove) {
-        Remove-Item -LiteralPath $item.FullName -Recurse -Force
+        try {
+            Remove-Item -LiteralPath $item.FullName -Recurse -Force
+            $removedCount++
+        }
+        catch {
+            $reason = $_.Exception.Message
+            Write-Warning "Не удалось удалить: $($item.FullName)`
+Причина: $reason"
+            Add-FailedItem -Path $item.FullName -Reason $reason
+            continue
+        }
     }
 
-    Write-Host "[$Label] Очистка завершена. Удалено: $($toRemove.Count)"
+    Write-Host "[$Label] Очистка завершена. Удалено: $removedCount из $($toRemove.Count)"
 }
 
 Write-Host 'Очистка временных папок 1C (Local/Roaming\1C\1cv8)' -ForegroundColor Cyan
 
-$computerName = Read-Host 'Введите имя ПК (например, ARM-277)'
+$computerName = Read-Host 'Введите имя ПК (например, ARM)'
 if ([string]::IsNullOrWhiteSpace($computerName)) {
     throw 'Имя ПК не может быть пустым.'
 }
 
 $usersRoot = "\\$computerName\c$\Users"
-if (-not (Test-Path -LiteralPath $usersRoot)) {
-    throw "Путь недоступен: $usersRoot"
+try {
+    $usersRootExists = Test-Path -LiteralPath $usersRoot
+}
+catch {
+    $reason = $_.Exception.Message
+    Write-Error "Нет доступа к пути $usersRoot. Причина: $reason"
+    exit 1
 }
 
-$userFolders = Get-ChildItem -LiteralPath $usersRoot -Directory -Force |
-    Sort-Object LastWriteTime -Descending
+if (-not $usersRootExists) {
+    Write-Error "Путь недоступен: $usersRoot"
+    exit 1
+}
+
+try {
+    $userFolders = Get-ChildItem -LiteralPath $usersRoot -Directory -Force |
+        Sort-Object LastWriteTime -Descending
+}
+catch {
+    $reason = $_.Exception.Message
+    Write-Error "Не удалось получить список профилей в $usersRoot. Причина: $reason"
+    exit 1
+}
 
 if (-not $userFolders) {
-    throw "В $usersRoot не найдено папок пользователей."
+    Write-Error "В $usersRoot не найдено папок пользователей."
+    exit 1
 }
 
 $menuItems = foreach ($folder in $userFolders) {
@@ -132,5 +197,12 @@ if ($confirm -notmatch '^(Y|y|Д|д)$') {
 
 Remove-UnwantedChildren -Path $local1cPath -AllowedNames $allowedLocal -Label 'Local'
 Remove-UnwantedChildren -Path $roaming1cPath -AllowedNames $allowedRoaming -Label 'Roaming'
+
+if ($script:FailedItems.Count -gt 0) {
+    Write-Host "`nБыли элементы, к которым не удалось получить доступ или удалить:" -ForegroundColor Yellow
+    foreach ($failed in $script:FailedItems) {
+        Write-Host (" - {0}" -f $failed)
+    }
+}
 
 Write-Host "`nГотово." -ForegroundColor Green
